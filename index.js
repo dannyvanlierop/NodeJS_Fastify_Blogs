@@ -10,7 +10,7 @@ require('./Fastify.js')();                                      /** Load and run
 
 // Register routes to handle blog posts
 const blogRoutes = require('./routes/blogs')
-blogRoutes.forEach((route, index) => {
+    blogRoutes.forEach((route, index) => {
     fastify.route(route)
 });
 
