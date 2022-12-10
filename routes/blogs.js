@@ -1,47 +1,5 @@
 /** https://www.sitepoint.com/create-rest-api-fastify/ **/
 const blogController = require('../controller/blogs');
-
-const routes = [{
-        method: 'GET',
-        url: '/api/blogs',
-        handler: blogController.getAllBlogs
-    },
-    // GET - Without validation
-    //{
-    //    method: 'GET',
-    //    url: '/api/blogs/:id',
-    //    handler: blogController.getBlog
-    //},
-    {
-        method: 'GET',
-        url: '/api/blogs/:id',
-        schema: getBlogValidation, // add validation
-        handler: blogController.getBlog
-    },
-    // POST - Without validation
-    //{
-    //    method: 'POST',
-    //    url: '/api/blogs',
-    //    handler: blogController.addBlog
-    //},
-    {
-        method: 'POST',
-        url: '/api/blogs',
-        schema: addBlogValidation, // add validation
-        handler: blogController.addBlog
-    },
-    {
-        method: 'PUT',
-        url: '/api/blogs/:id',
-        handler: blogController.updateBlog
-    },
-    {
-        method: 'DELETE',
-        url: '/api/blogs/:id',
-        handler: blogController.deleteBlog
-    }
-]
-
 const getBlogValidation = {
     params: {
         id: { type: 'string' }
@@ -76,6 +34,32 @@ const addBlogValidation = {
         }
     }
 }
-
-
+const routes = [{
+        method: 'GET',
+        url: '/api/blogs',
+        handler: blogController.getAllBlogs
+    },
+    {
+        method: 'GET',
+        url: '/api/blogs/:id',
+        schema: getBlogValidation, // enable validation, comment to disable
+        handler: blogController.getBlog
+    },
+    {
+        method: 'POST',
+        url: '/api/blogs',
+        schema: addBlogValidation, // enable validation, comment to disable
+        handler: blogController.addBlog
+    },
+    {
+        method: 'PUT',
+        url: '/api/blogs/:id',
+        handler: blogController.updateBlog
+    },
+    {
+        method: 'DELETE',
+        url: '/api/blogs/:id',
+        handler: blogController.deleteBlog
+    }
+]
 module.exports = routes
